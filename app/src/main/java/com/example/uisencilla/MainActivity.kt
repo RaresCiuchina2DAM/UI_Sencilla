@@ -33,14 +33,17 @@ class MainActivity : AppCompatActivity() {
 
     fun validar(view: View) {
 
-
-        if (txtNombre.text.toString().isEmpty()) {
-            txtNombre.error = "Campo obligatorio"
-        }
-        if (!(AceptarTerminos.isChecked)) {
-            AceptarTerminos.error = "Debe aceptar los terminos y condiciones"
-        }
-        if (!(txtNombre.text.toString().isEmpty()) && ((AceptarTerminos.isChecked))) {
+        do {
+            if (txtNombre.text.toString().isEmpty()) {
+                txtNombre.error = "Campo obligatorio"
+            }
+            if (!(AceptarTerminos.isChecked)) {
+                AceptarTerminos.error = "Debe aceptar los terminos y condiciones"
+            }
+            if (AceptarTerminos.isChecked){
+                AceptarTerminos.error = null
+            }
+        }while (txtNombre.text.toString().isEmpty() && !(AceptarTerminos.isChecked))
 
             val intent = Intent(MainActivity@this, MainActivity2::class.java)
 
@@ -52,6 +55,6 @@ class MainActivity : AppCompatActivity() {
 
             //Iniciamos la nueva actividad
             startActivity(intent)
-        }
+
     }
 }
